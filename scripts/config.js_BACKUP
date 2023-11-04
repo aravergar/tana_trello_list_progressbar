@@ -1,9 +1,9 @@
-gShowPieChart = true;
+gShowPieChart = false;
 
 gTrelloPluginType = 'chrome_extension';
 var gTrelloPluginTracker = {
 	_trackEvent : function(cat,action,label,value) {
-		chrome.extension.sendMessage({
+		chrome.runtime.sendMessage({
 			type:"event",
 			category: cat,
 			action:action,
@@ -12,17 +12,17 @@ var gTrelloPluginTracker = {
 		});
 	},
 	_trackPageview : function(url) {
-		chrome.extension.sendMessage({type:"page" , url :url }, function(response) {
+		chrome.runtime.sendMessage({type:"page" , url :url }, function(response) {
 		});
 	}
 };
 
-chrome.extension.sendMessage({
+/* chrome.runtime.sendMessage({
 	type:"status_query",
 	name :"show_pie_chart",
 } , function(data) {
 	if (data.result == 'no') {
 		gShowPieChart = false;
 	}
-})
+}) */
 
